@@ -1,0 +1,46 @@
+安装less
+
+npm install less less-loader --save-dev
+或者分2次安装
+npm install less --save-dev；
+npm install less-loader --save-dev；
+
+配置全局
+安装成功后，打开 build/webpack.base.conf.js ，在 module.exports = 的对象的 module.rules 后面添加一段：
+module.exports = {
+    //  此处省略无数行，已有的的其他的内容
+    module: {
+        rules: [
+          //  此处省略无数行，已有的的其他的规则
+          {
+            test: /\.less$/,
+            loader: "style-loader!css-loader!less-loader",
+          }
+        ]
+    }
+}
+
+参考文章https://blog.csdn.net/zmhawk/article/details/75209161
+参考文章https://blog.csdn.net/zmhawk/article/details/75209161
+
+
+动画
+<transition>
+    <div v-bind:class="{show: isShowRegister}" class="register">
+</transition>
+.register{
+  height:0;
+  overflow:hidden;
+  transition:height .5s;
+}
+.isShowRegister{
+   height:200px;
+}
+
+不同组件中的传值vm.$on  vm.$emit
+$vm1.$on('receive',data => {
+  console.log(data)
+})
+$vm2.$emit('receive','hello')  //不会触发$vm1的receive
+$vm1.$emit('receive','hello')  //触发$vm1的receive
+只有在同一个组件下才会触发监听事件
